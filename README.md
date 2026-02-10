@@ -6,7 +6,7 @@ commands:
   help                 show this help
   load <name> <path>   load a save into memory
   list                 list loaded saves
-  inspect <name>       inspect a loaded save
+  peek <name>          prints the first 80 characters of loaded save
   diff <a> <b>         compare two loaded saves (placeholder)
   exit | quit          leave the REPL
 ```
