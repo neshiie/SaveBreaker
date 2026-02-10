@@ -1,5 +1,5 @@
 # SaveBreaker
-A universal save-game editor framework written in Rust. Under construction :)
+A universal save-game file analysis framework written in Rust. Under construction :)
 
 commands:
 ```
