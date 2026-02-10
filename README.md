@@ -12,5 +12,7 @@ commands:
 ```
 
 This program runs in a REPL console. To run this program, simply run `run.sh`:
-`chmod +x run.sh`
-`./run.sh`
+```
+chmod +x run.sh
+./run.sh
+```
