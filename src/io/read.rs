@@ -1,8 +1,11 @@
-use std::{fs, path::{Path, PathBuf}};
-use anyhow::{Context, Result};
 use crate::core::types::SaveInput;
+use anyhow::{Context, Result};
+use std::{
+    fs,
+    path::{Path, PathBuf},
+};
 
-// new implementation 
+// new implementation
 // reading into memory
 pub fn load_text<P: AsRef<Path>>(path: P) -> Result<SaveInput> {
     let filepath = path.as_ref();
@@ -15,9 +18,9 @@ pub fn load_text<P: AsRef<Path>>(path: P) -> Result<SaveInput> {
     })
 }
 
-
 // old implementation:
-// read directly from the file every time 
+// read directly from the file every time
+#[allow(dead_code)]
 pub fn read_text_trimmed<P: AsRef<Path>>(path: P) -> Result<String> {
     let filepath = path.as_ref();
 
@@ -26,5 +29,3 @@ pub fn read_text_trimmed<P: AsRef<Path>>(path: P) -> Result<String> {
 
     Ok(raw.trim().to_string())
 }
-
-

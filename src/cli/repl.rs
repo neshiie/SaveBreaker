@@ -2,22 +2,22 @@ use std::collections::HashMap;
 use std::io::{self, Write};
 use std::path::PathBuf;
 
-use anyhow::{anyhow, Result};
+use anyhow::{Result, anyhow};
 use colored::*;
 
+use crate::analyze::entropy::shannon_entropy_str;
 use crate::core::types::SaveInput;
 use crate::io::read::load_text;
-use crate::analyze::entropy::shannon_entropy_str;
 
 pub fn run_repl() -> Result<()> {
-    println!("{}","SaveBreaker REPL".red().bold());
-    println!("{}","Type 'help' for commands.\n".cyan());
+    println!("{}", "SaveBreaker REPL".red().bold());
+    println!("{}", "Type 'help' for commands.\n".cyan());
 
     let mut saves: HashMap<String, SaveInput> = HashMap::new();
 
     loop {
         // prompt
-        print!("{}","!SaveBreaker#> ".red().bold());
+        print!("{}", "!SaveBreaker#> ".red().bold());
         io::stdout().flush()?; // ensure prompt displays
 
         // read line
@@ -48,11 +48,7 @@ pub fn run_repl() -> Result<()> {
                     println!("(no saves loaded)");
                 } else {
                     for (name, s) in &saves {
-                        println!(
-                            "{name}: {} ({} chars)",
-                            s.path.display(),
-                            s.text.len()
-                        );
+                        println!("{name}: {} ({} chars)", s.path.display(), s.text.len());
                     }
                 }
             }
@@ -84,9 +80,9 @@ pub fn run_repl() -> Result<()> {
                 }
                 let name = parts[1];
 
-                let save = saves.get(name).ok_or_else(|| {
-                    anyhow!("no such save loaded: '{name}'. Try: list")
-                })?;
+                let save = saves
+                    .get(name)
+                    .ok_or_else(|| anyhow!("no such save loaded: '{name}'. Try: list"))?;
 
                 println!("{} {name}", "name:".cyan());
                 println!("{} {}", "path:".cyan(), save.path.display());
@@ -120,14 +116,13 @@ pub fn run_repl() -> Result<()> {
                 }
                 let name = parts[1];
 
-                let save = saves.get(name).ok_or_else(|| {
-                    anyhow!("no such save loaded: '{name}'. Try: list")
-                })?;
+                let save = saves
+                    .get(name)
+                    .ok_or_else(|| anyhow!("no such save loaded: '{name}'. Try: list"))?;
 
                 let h = shannon_entropy_str(&save.text);
                 println!("entropy({name}) = {:.6} bits/byte (0..8)", h);
             }
-
 
             _ => {
                 println!("unknown command: '{cmd}'. Try 'help'.");
@@ -147,6 +142,4 @@ fn print_help() {
     println!("  diff <a> <b>         compare two loaded saves (placeholder)");
     println!("  exit | quit          leave the REPL");
     println!("  entropy <name>       compute Shannon entropy (bits/byte)");
-
 }
-

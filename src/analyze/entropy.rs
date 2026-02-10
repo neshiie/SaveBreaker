@@ -25,4 +25,3 @@ pub fn shannon_entropy_bytes(data: &[u8]) -> f64 {
 pub fn shannon_entropy_str(s: &str) -> f64 {
     shannon_entropy_bytes(s.as_bytes())
 }
-

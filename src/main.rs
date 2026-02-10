@@ -1,9 +1,9 @@
 use anyhow::Result;
 
+mod analyze;
 mod cli;
-mod io; 
 mod core;
-mod analyze; 
+mod io;
 
 fn main() -> Result<()> {
     cli::run()
