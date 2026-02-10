@@ -20,7 +20,6 @@ pub fn load_text<P: AsRef<Path>>(path: P) -> Result<SaveInput> {
 
 // old implementation:
 // read directly from the file every time
-#[allow(dead_code)]
 pub fn read_text_trimmed<P: AsRef<Path>>(path: P) -> Result<String> {
     let filepath = path.as_ref();
 
