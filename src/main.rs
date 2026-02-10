@@ -1,3 +1,6 @@
-fn main() {
-    println!("Hello, world!");
+use anyhow::Result;
+mod cli;
+
+fn main() -> Result<()> {
+    cli::run()
 }
