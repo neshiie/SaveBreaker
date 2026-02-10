@@ -1,7 +1,7 @@
 use anyhow::Result;
 use clap::{Parser, Subcommand};
 
-use crate::io::read::load_text;
+use io::read::load_text;
 
 mod repl;
 

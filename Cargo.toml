@@ -1,10 +1,10 @@
-[package]
-name = "savebreaker"
-version = "0.1.0"
-edition = "2024"
+# [workspace.package]
+# name = "savebreaker"
+# version = "0.1.0"
+# edition = "2024"
+[workspace]
+resolver = "3"
+members = ["core", "analyze", "io", "savebreaker"]
 
-[dependencies]
-clap = { version = "4", features = ["derive"] }
+[workspace.dependencies]
 anyhow = "1"
-colored = "3.1.1"
-

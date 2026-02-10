@@ -7,7 +7,6 @@ pub struct SaveInput {
 }
 
 impl SaveInput {
-    #[allow(dead_code)]
     pub fn len_chars(&self) -> usize {
         self.text.len()
     }

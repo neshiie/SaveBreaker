@@ -1,3 +1,4 @@
+use crate::cli::load_text;
 use std::collections::HashMap;
 use std::io::{self, Write};
 use std::path::PathBuf;
@@ -5,9 +6,8 @@ use std::path::PathBuf;
 use anyhow::{Result, anyhow};
 use colored::*;
 
-use crate::analyze::entropy::shannon_entropy_str;
-use crate::core::types::SaveInput;
-use crate::io::read::load_text;
+use analyze::entropy::shannon_entropy_str;
+use core::types::SaveInput;
 
 pub fn run_repl() -> Result<()> {
     println!("{}", "SaveBreaker REPL".red().bold());

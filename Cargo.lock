@@ -3,6 +3,10 @@
 version = 4
 
 [[package]]
+name = "analyze"
+version = "0.1.0"
+
+[[package]]
 name = "anstream"
 version = "0.6.21"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -114,10 +118,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "core"
+version = "0.1.0"
+
+[[package]]
 name = "heck"
 version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2304e00983f87ffb38b55b444b5e3b60a884b5d30c0fca7d82fe33449bbe55ea"
+
+[[package]]
+name = "io"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "core",
+]
 
 [[package]]
 name = "is_terminal_polyfill"
@@ -153,9 +169,12 @@ dependencies = [
 name = "savebreaker"
 version = "0.1.0"
 dependencies = [
+ "analyze",
  "anyhow",
  "clap",
  "colored",
+ "core",
+ "io",
 ]
 
 [[package]]
