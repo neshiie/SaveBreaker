@@ -3,19 +3,20 @@ use std::io::{self, Write};
 use std::path::PathBuf;
 
 use anyhow::{anyhow, Result};
+use colored::*;
 
 use crate::core::types::SaveInput;
 use crate::io::read::load_text;
 
 pub fn run_repl() -> Result<()> {
-    println!("SaveBreaker REPL");
-    println!("Type 'help' for commands.\n");
+    println!("{}","SaveBreaker REPL".red().bold());
+    println!("{}","Type 'help' for commands.\n".cyan());
 
     let mut saves: HashMap<String, SaveInput> = HashMap::new();
 
     loop {
         // prompt
-        print!("!SaveBreaker#> ");
+        print!("{}","!SaveBreaker#> ".red().bold());
         io::stdout().flush()?; // ensure prompt displays
 
         // read line
