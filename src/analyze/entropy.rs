@@ -9,17 +9,12 @@ pub fn shannon_entropy_bytes(data: &[u8]) -> f64 {
     }
 
     let len = data.len() as f64;
-    let mut h = 0.0;
 
-    for &c in &counts {
-        if c == 0 {
-            continue;
-        }
-        let p = (c as f64) / len;
-        h -= p * p.log2();
-    }
-
-    h
+    counts
+        .into_iter()
+        .filter(|c| *c != 0)
+        .map(|p| (p as f64) / len)
+        .fold(0.0, |acc, p| acc - (p * p.log2()))
 }
 
 pub fn shannon_entropy_str(s: &str) -> f64 {
