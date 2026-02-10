@@ -1,5 +1,6 @@
 use anyhow::Result;
 use clap::{Parser, Subcommand};
+use crate::io::read::read_text_trimmed;
 
 #[derive(Parser)]
 #[command(name = "savebreaker")]
@@ -28,6 +29,10 @@ pub fn run() -> Result<()> {
     match cli.command {
         Commands::Inspect { file } => {
             println!("Inspecting: {file}");
+            
+            let s = read_text_trimmed(&file)?;
+            println!("Chars: {}", s.len());
+            println!("First 80: {}", &s[..s.len().min(80)]);
         }
 
         Commands::Diff { file_a, file_b } => {
