@@ -88,10 +88,10 @@ pub fn run_repl() -> Result<()> {
                     anyhow!("no such save loaded: '{name}'. Try: list")
                 })?;
 
-                println!("name: {name}");
-                println!("path: {}", save.path.display());
-                println!("chars: {}", save.text.len());
-                println!("preview: {}", save.preview(120));
+                println!("{} {name}", "name:".cyan());
+                println!("{} {}", "path:".cyan(), save.path.display());
+                println!("{} {}", "chars:".cyan(), save.text.len());
+                println!("{} {}", "preview:".cyan(), save.preview(120));
             }
 
             "diff" => {
