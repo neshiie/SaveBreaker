@@ -5,7 +5,6 @@ use std::{
     path::{Path, PathBuf},
 };
 
-// new implementation
 // reading into memory
 pub fn load_text<P: AsRef<Path>>(path: P) -> Result<SaveInput> {
     let filepath = path.as_ref();
