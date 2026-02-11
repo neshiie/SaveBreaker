@@ -57,30 +57,14 @@ fn generate_file_format(filename: &str, buf: &[u8; 64]) -> FileFormat {
         },
     };
 
-    if opt.is_some() {
-        return opt.unwrap();
+    if let Some(v) = opt {
+        return v;
     }
 
     match buf {
-        [
-            0x53,
-            0x51,
-            0x4C,
-            0x69,
-            0x74,
-            0x65,
-            0x20,
-            0x66,
-            0x6F,
-            0x72,
-            0x6D,
-            0x61,
-            0x74,
-            0x20,
-            0x33,
-            0x00,
-            ..,
-        ] => FileFormat::Binary(BinarySignature::Sqlite),
+        [0x53, 0x51, 0x4C, 0x69, 0x74, 0x65, 0x20, 0x66, 0x6F, 0x72, 0x6D, 0x61, 0x74, 0x20, 0x33, 0x00, ..] => {
+            FileFormat::Binary(BinarySignature::Sqlite)
+        }
         _ => FileFormat::Binary(BinarySignature::Raw),
     }
 }
