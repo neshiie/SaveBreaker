@@ -1,0 +1,5 @@
+[tools]
+jj = "latest"
+just = "latest"
+rust = "latest"
+rust-analyzer = "latest"
