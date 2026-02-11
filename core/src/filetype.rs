@@ -45,6 +45,8 @@ impl FileMetadata {
     }
 }
 
+const SQLITE_PREFIX: &[u8] = b"\x53\x51\x4C\x69\x74\x65\x20\x66\x6F\x72\x6D\x61\x74\x20\x33\x00";
+
 fn generate_file_format(filename: &str, buf: &[u8; 64]) -> FileFormat {
     let parts: Vec<&str> = filename.split('.').collect();
 
@@ -62,25 +64,7 @@ fn generate_file_format(filename: &str, buf: &[u8; 64]) -> FileFormat {
     }
 
     match buf {
-        [
-            0x53,
-            0x51,
-            0x4C,
-            0x69,
-            0x74,
-            0x65,
-            0x20,
-            0x66,
-            0x6F,
-            0x72,
-            0x6D,
-            0x61,
-            0x74,
-            0x20,
-            0x33,
-            0x00,
-            ..,
-        ] => FileFormat::Binary(BinarySignature::Sqlite),
+        s if s.starts_with(SQLITE_PREFIX) => FileFormat::Binary(BinarySignature::Sqlite),
         _ => FileFormat::Binary(BinarySignature::Raw),
     }
 }
