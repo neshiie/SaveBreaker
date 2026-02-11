@@ -12,10 +12,7 @@ pub fn load_text<P: AsRef<Path>>(path: P) -> Result<SaveInput> {
     let raw = fs::read_to_string(filepath)
         .with_context(|| format!("failed to read file as UTF-8: {}", filepath.display()))?;
 
-    Ok(SaveInput {
-        path: PathBuf::from(filepath),
-        text: raw.trim().to_string(),
-    })
+    SaveInput::new(PathBuf::from(filepath), raw.trim().to_string())
 }
 
 // old implementation:
