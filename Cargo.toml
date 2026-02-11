@@ -4,7 +4,7 @@
 # edition = "2024"
 [workspace]
 resolver = "3"
-members = ["core", "analyze", "io", "savebreaker"]
+members = ["core", "analyze", "codecs", "io", "savebreaker", "codecs"]
 
 [workspace.dependencies]
 anyhow = "1"
