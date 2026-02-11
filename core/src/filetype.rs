@@ -53,7 +53,7 @@ fn generate_file_format(filename: &str, buf: &[u8; 64]) -> FileFormat {
     let parts: Vec<&str> = filename.split('.').collect();
 
     let opt = match parts.last() {
-        None => Some(FileFormat::Binary(BinSig::Raw)),
+        None => None,
         Some(v) => match *v {
             "json" => Some(FileFormat::Text(TextSig::Json)),
             "txt" => Some(FileFormat::Text(TextSig::Text)),
