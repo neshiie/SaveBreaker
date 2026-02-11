@@ -4,20 +4,24 @@ use std::io::prelude::*;
 
 #[derive(Debug, Clone)]
 pub enum FileFormat {
-    Binary(BinarySignature),
-    Text(TextSignature),
+    Binary(BinSig),
+    Text(TextSig),
 }
 
+// Binary Signature
 #[derive(Clone, Debug)]
-pub enum BinarySignature {
+pub enum BinSig {
     Raw,
     Sqlite,
+    Nbt,
 }
 
+// Text Signature
 #[derive(Debug, Clone)]
-pub enum TextSignature {
+pub enum TextSig {
     Json,
     Text,
+    Xml,
 }
 
 #[derive(Debug, Clone)]
@@ -51,10 +55,13 @@ fn generate_file_format(filename: &str, buf: &[u8; 64]) -> FileFormat {
     let parts: Vec<&str> = filename.split('.').collect();
 
     let opt = match parts.last() {
-        None => Some(FileFormat::Binary(BinarySignature::Raw)),
+        None => None,
         Some(v) => match *v {
-            "json" => Some(FileFormat::Text(TextSignature::Json)),
-            "txt" => Some(FileFormat::Text(TextSignature::Text)),
+            "json" => Some(FileFormat::Text(TextSig::Json)),
+            "txt" => Some(FileFormat::Text(TextSig::Text)),
+            "nbt" => Some(FileFormat::Binary(BinSig::Nbt)),
+            "xml" => Some(FileFormat::Text(TextSig::Xml)),
+            "dat" => Some(FileFormat::Binary(BinSig::Raw)),
             _ => None,
         },
     };
@@ -64,7 +71,7 @@ fn generate_file_format(filename: &str, buf: &[u8; 64]) -> FileFormat {
     }
 
     match buf {
-        s if s.starts_with(SQLITE_PREFIX) => FileFormat::Binary(BinarySignature::Sqlite),
-        _ => FileFormat::Binary(BinarySignature::Raw),
+        s if s.starts_with(SQLITE_PREFIX) => FileFormat::Binary(BinSig::Sqlite),
+        _ => FileFormat::Binary(BinSig::Raw),
     }
 }
