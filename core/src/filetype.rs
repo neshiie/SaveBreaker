@@ -13,6 +13,7 @@ pub enum FileFormat {
 pub enum BinSig {
     Raw,
     Sqlite,
+    Nbt,
 }
 
 // Text Signature
@@ -20,6 +21,7 @@ pub enum BinSig {
 pub enum TextSig {
     Json,
     Text,
+    Xml,
 }
 
 #[derive(Debug, Clone)]
@@ -57,6 +59,9 @@ fn generate_file_format(filename: &str, buf: &[u8; 64]) -> FileFormat {
         Some(v) => match *v {
             "json" => Some(FileFormat::Text(TextSig::Json)),
             "txt" => Some(FileFormat::Text(TextSig::Text)),
+            "nbt" => Some(FileFormat::Binary(BinSig::Nbt)),
+            "xml" => Some(FileFormat::Text(TextSig::Xml)),
+            "dat" => Some(FileFormat::Binary(BinSig::Raw)),
             _ => None,
         },
     };
