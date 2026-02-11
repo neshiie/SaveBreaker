@@ -7,4 +7,12 @@ resolver = "3"
 members = ["core", "analyze", "codecs", "io", "savebreaker", "codecs"]
 
 [workspace.dependencies]
+analyze = { path = "analyze" }
+core = { path = "core" }
+codecs = { path = "codecs" }
+io = { path = "io" }
+savebreaker = { path = "savebreaker" }
 anyhow = "1"
+clap = { version = "4", features = ["derive"] }
+colored = "3.1.1"
+base64 = "0.22"
