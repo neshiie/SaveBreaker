@@ -10,10 +10,11 @@ build:
 
 format:
     cargo fmt
+    cargo clippy --all-targets --all-features --fix
 
 check:
     cargo fmt --check
-    cargo clippy
+    cargo clippy --all-targets --all-features
 
 test:
     cargo test
