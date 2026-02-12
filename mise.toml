@@ -1,3 +1,8 @@
 [tools]
+delta = "latest"
+fd = "latest"
 jj = "latest"
+jjui = "latest"
 just = "latest"
+ripgrep-all = "latest"
+tokei = "latest"
